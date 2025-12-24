@@ -4,6 +4,43 @@
   <meta charset="UTF-8">
   <title>Feliz Natal, Meu Amor ❤️</title>
 
+<script>
+  function criarNeve() {
+    const neve = document.createElement("div");
+    neve.className = "neve";
+    neve.innerHTML = "❄";
+    neve.style.left = Math.random() * window.innerWidth + "px";
+    neve.style.fontSize = (10 + Math.random() * 20) + "px";
+     neve.style.animationDuration = (5 + Math.random() * 5) + "s";
+     document.body.appendChild(neve);
+  
+     setTimeout(() => {
+       neve.remove();
+     }, 10000);
+  }
+  
+    setInterval(criarNeve, 300);
+  </script>
+  
+<script>
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll(".reveal");
+
+    reveals.forEach(el => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      const elementVisible = 100;
+
+      if (elementTop < windowHeight - elementVisible) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+</script>
+
   <style>
     body {
       margin: 0;
@@ -18,6 +55,58 @@
       max-width: 1000px;
       margin: auto;
     }
+
+    .fade-in {
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .neve {
+      position: fixed;
+      top: -10px;
+      color: white;
+      user-select: none;
+      z-index: 9999;
+      pointer-events: none;
+      animation: cair linear infinite;
+    }
+
+    @keyframes cair {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    .coracao {
+      position: fixed;
+      bottom: 50px;
+      left: 30px;
+      font-size: 40px;
+      color: rgba(255, 105, 180, 0.4);
+      animation: bater 1.5s infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes bater {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      40% { transform: scale(1); }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
 
     h1 {
       font-size: 3rem;
@@ -121,12 +210,24 @@
         text-align: center;
       }
     }
+    /*asd*/
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
-<body>
+<body class="fade-in">
+<div class="coracao">❤</div>
 
-<section>
+<section class="reveal"n>
   <h1>🎄 Feliz Natal, Meu Amor ❤️</h1>
   <p>
     Eu quis te dar algo feito com carinho,<br>
@@ -135,13 +236,13 @@
   </p>
 </section>
 
-<section>
+<section class="reveal">
   <h2>⏱️ Nosso tempo juntos</h2>
   <p>Desde o nosso primeiro beijo, já se passaram:</p>
   <div class="contador" id="contador"></div>
 </section>
 
-<section>
+<section class="reveal">
   <h2>📸 Nossas Primeiras Mensagens</h2>
 
   <div class="galeria">
@@ -181,7 +282,7 @@
   </div>
 </section>
 
-<section>
+<section class="reveal">
   <h2>📅 Datas importantes</h2>
   <ul class="datas">
     <li>💋 Primeiro beijo: <strong>16/11/2025</strong></li>
@@ -191,7 +292,7 @@
   </ul>
 </section>
 
-<section>
+<section class="reveal">
   <h2>🌙 Dias importantes</h2>
 
   <div class="dia-importante">
@@ -353,7 +454,7 @@
 
 </section>
 
-<section>
+<section class="reveal">
   <h2>❤ Umas Palavrinhas pra você ❤</h2>
   <p>
     Meu amor, eu te amo muito mesmo... Não da pra reprensetar e nem dizer
@@ -374,7 +475,7 @@
   <p><strong>Te Vivo <br> Much so More</strong></p>
 </section>
 
-<section>
+<section class="reveal">
   <h2>💌</h2>
   <p>
     Cada segundo ao seu lado vale a pena.<br>
@@ -409,3 +510,4 @@
 
 </body>
 </html>
+
